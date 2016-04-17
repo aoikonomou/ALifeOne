@@ -12,7 +12,10 @@ var stageHeight = 1000;
 function init() {
 
     stage = new createjs.Stage("demoCanvas");
+
     image = new createjs.Bitmap("img/gear.png");
+    image.regX =image.width/2; // registration point?
+    image.regY=image.height/2;
     stage.addChild(image);
 
 
@@ -73,7 +76,7 @@ function randomInteger(min, max) {
 function randomHexColor() {
 
     var randomHexColor;
-    randomHexColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
+    randomHexColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     return randomHexColor;
 
 }
@@ -101,6 +104,9 @@ function handleTick(event) {
 
 
     image.x += 10;
+    image.rotation +=3;
+
+
     checkGraphicAgainstBoundaries(image, 0, stageWidth, 0, stageHeight);
     moveBalls();
    // console.log(randomInteger(1,100));
