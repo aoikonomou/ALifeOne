@@ -6,19 +6,32 @@
 
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     <script src="test.js"></script>
+    <script src="utils.js"></script>
 
 
 </head>
-<body onload="init();">
-<canvas id="demoCanvas" height="1000" width="1800"></canvas>
+<body onload="init()">
 
-<div>
+<canvas id="demoCanvas" height="" width="" style="border:1px solid"></canvas>
 
-    <form id="settings">
+<div id="settings">
 
-        <input type="number" name="canvasWidth" value="1000">
-        <input type="number" name="canvasHeight" value="1000">
-        <input type="submit" name="submit">
+    <form id="setupForm">
+
+        <div>
+            Canvas Width: <input type="number" id="canvasWidth" value="" size="4" maxlength="4"><br>
+            Canvas Height: <input type="number" id="canvasHeight" value="" size="4" maxlength="4"><br>
+            Canvas Background Color: <input type="color" id="canvasBackgroundColor" value="#ff0000"><br>
+        </div>
+
+        <div>
+            Number of Circles: <input type="number" id="numberOfCircles" value="" size="4" maxlength="4"><br>
+            Circle Radius: <input type="number" id="circleRadius" value="" size="4" maxlength="4"><br>
+
+        </div>
+
+        <input type="button" name="setupCanvas" value="Setup Canvas" onclick="setupCanvasByUser()">
+        <input type="button" name="drawCirclesGraphics" value="Draw Circles" onclick="drawCircles()">
 
     </form>
 
