@@ -79,9 +79,13 @@ function setCanvasBackground(){
 function drawCircles(){
 
     //Reset the circles array so that it has nothing in it
-    shapeArray=[];
+    //shapeArray=[]; // Apparently Only works on EMPTY arrays. Otherways it leaves it unchanged
+    shapeArray.length=0;
+    stage.removeAllChildren(); //Remove any sprites from previous operations perhaps from the stage
 
-    createGraphics("circle", 50);
+    var numberOfObjects = document.getElementById("numberOfCircles").value;
+
+    createGraphics("circle", numberOfObjects);
 
 }
 
