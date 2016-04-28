@@ -33,16 +33,22 @@ function init() {
 
 
     // Create graphics
-    var type="circle";
-    var numberOfObjects=50; // How many objects do you want;
-    var minSize=10; // Minimum graphic size
-    var maxSize=100; // Maximum graphic size
-    var color=randomHexColor(); // Random colour from random colour function
-    var xPos=randomInteger(0,canvasWidth); // Graphic position somewhere withing the screen bounds
-    var yPos=randomInteger(0,canvasWidth); // Graphic position somewhere withing the screen bounds
+    var type = "circle";
+    var numberOfObjects = 50; // How many objects do you want;
+    var minSize = 10; // Minimum graphic size
+    var maxSize = 100; // Maximum graphic size
+    var color = randomHexColor(); // Random colour from random colour function
+    var xPos = randomInteger(0, canvasWidth); // Graphic position somewhere withing the screen bounds
+    var yPos = randomInteger(0, canvasWidth); // Graphic position somewhere withing the screen bounds
 
 
-  // createGraphics(type, numberOfObjects, minSize, maxSize, color, xPos, yPos); // Call createGraphics function with relevant parameters
+    // createGraphics(type, numberOfObjects, minSize, maxSize, color, xPos, yPos); // Call createGraphics function with relevant parameters
+
+    // Provides access to a ticker for animation properties. You can update the stage on every tick
+    createjs.Ticker.addEventListener("tick", tick);
+    // these are equivalent, 1000ms / 40fps = 25ms
+createjs.Ticker.setInterval(25);
+createjs.Ticker.setFPS(40);
 
     message("I did the init");
 
@@ -54,7 +60,7 @@ function setupCanvasByUser() {
     canvasWidth = document.getElementById("canvasWidth").value;
     canvasHeight = document.getElementById("canvasHeight").value;
 
-    message("New canvas size is "+canvasWidth +" * " + canvasHeight);
+    message("New canvas size is " + canvasWidth + " * " + canvasHeight);
 
     // Set canvas size to what the user put in the form fields
     document.getElementById("demoCanvas").width = canvasWidth;
@@ -65,22 +71,22 @@ function setupCanvasByUser() {
 
 }
 
-function setCanvasBackground(){
+function setCanvasBackground() {
 
     // Change the canvas' background colour (by painting a rectangle in it)
-    var canvas=document.getElementById("demoCanvas");
-    var context=canvas.getContext("2d");
-    context.fillStyle= document.getElementById("canvasBackgroundColor").value;
-    context.fillRect(0,0,canvasWidth,canvasHeight);
+    var canvas = document.getElementById("demoCanvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = document.getElementById("canvasBackgroundColor").value;
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
 
 }
 
 
-function drawCircles(){
+function drawCircles() {
 
     //Reset the circles array so that it has nothing in it
     //shapeArray=[]; // Apparently Only works on EMPTY arrays. Otherways it leaves it unchanged
-    shapeArray.length=0;
+    shapeArray.length = 0;
     stage.removeAllChildren(); //Remove any sprites from previous operations perhaps from the stage
 
     var numberOfObjects = document.getElementById("numberOfCircles").value;
@@ -90,11 +96,11 @@ function drawCircles(){
 }
 
 
-function createGraphics(type,numberOfObjects) {
+function createGraphics(type, numberOfObjects) {
 
     for (var i = 1; i < numberOfObjects; i++) {
         if (type == "circle") {
-            circle(stage, randomInteger(0,canvasWidth), randomInteger(0,canvasHeight), randomInteger(10,100), randomHexColor());
+            circle(stage, randomInteger(0, canvasWidth), randomInteger(0, canvasHeight), randomInteger(10, 100), randomHexColor());
         }
     }
 
@@ -111,5 +117,18 @@ function circle(stage, xPos, yPos, radius, color) {
     shapeArray.push(circle);
     stage.addChild(circle);
     stage.update();
+
+}
+
+
+
+
+function tick() {
+    console.log("TICK!!!");
+
+    shapeArray[2].x = 1;
+    
+    stage.update();
+
 
 }
