@@ -126,7 +126,8 @@ function circle(stage, xPos, yPos, radius, color) {
 function tick() {
     console.log("TICK!!!");
 
-    shapeArray[2].x = 1;
+    message(shapeArray[2]);
+    shapeArray[2].x += 1;
     
     stage.update();
 
