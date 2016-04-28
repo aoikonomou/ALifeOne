@@ -98,7 +98,7 @@ function drawCircles() {
 
 function createGraphics(type, numberOfObjects) {
 
-    for (var i = 1; i < numberOfObjects; i++) {
+    for (var i = 0; i < numberOfObjects; i++) {
         if (type == "circle") {
             circle(stage, randomInteger(0, canvasWidth), randomInteger(0, canvasHeight), randomInteger(10, 100), randomHexColor());
         }
@@ -111,6 +111,10 @@ function circle(stage, xPos, yPos, radius, color) {
 
     var circle = new createjs.Shape();
     circle.graphics.beginFill(color).drawCircle(xPos, yPos, radius);
+    circle.mySpeed = randomInteger(1,10);
+    circle.myRadius = radius;
+
+    message(circle.myRadius);
     //circle.x = xPos;
     //circle.y= yPos;
 
@@ -126,9 +130,21 @@ function circle(stage, xPos, yPos, radius, color) {
 function tick() {
     console.log("TICK!!!");
 
-    message(shapeArray[2]);
-    shapeArray[2].x += 1;
-    
+    for(var i=0;i<shapeArray.length;i++) {
+        shapeArray[i].y -= shapeArray[i].mySpeed;
+
+
+        if(shapeArray[i].y < canvasHeight*-1){
+
+          //shapeArray[i].y =0-stage.y;
+
+
+        }
+
+        //message(shapeArray[i].y);
+
+    }
+
     stage.update();
 
 
