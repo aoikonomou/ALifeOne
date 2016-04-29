@@ -50,6 +50,17 @@ function init() {
 createjs.Ticker.setInterval(25);
 createjs.Ticker.setFPS(40);
 
+
+    // Drag and drop section
+    // enable touch interactions if supported on the current device:
+    createjs.Touch.enable(stage);
+
+    // enabled mouse over / out events
+    stage.enableMouseOver(10);
+    stage.mouseMoveOutside = true; // keep tracking the mouse even when it leaves the canvas
+
+
+
     message("I did the init");
 
 }
@@ -136,14 +147,19 @@ function tick() {
 
         if(shapeArray[i].y < canvasHeight*-1){
 
-          //shapeArray[i].y =0-stage.y;
-
-
+            // keep graphics within canvas after they come out of it. Code goes here
         }
 
-        //message(shapeArray[i].y);
+        // Recoginses rollover but the scale bit doesn't work.
+        shapeArray[i].on("rollover", function (evt) {
+            this.scaleX = this.scale * 1.5;
+
+        });
 
     }
+
+
+
 
     stage.update();
 
